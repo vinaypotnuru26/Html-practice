@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="eng">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <title>User registration form</title>
+    </head>
+    <body>
+        <form>
+                    <h2>Hostel registration</h2>
+<fieldset>
+    <div class="form-group">
+        <label for="fullName">Full Name:</label>
+        <input type="text" id="fullName" name="fullName"   placeholder="Enter your full name" required>
+    </div>
+    <br>
+
+    <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email"    placeholder="Enter your email" required>
+    </div>
+    <br>
+
+    <div class="form-group">
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone"    placeholder="Enter your phone number" required>
+    </div>
+    <br>
+
+    <div class="form-group">
+        <label for="gender">Gender:</label>
+        <select id="gender" name="gender" required>
+            <option value="">--Select--</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+        </select>
+    </div>
+</fieldset>
+<br>
+<fieldset>
+    <legend>Hostel rooms available</legend>
+    <select name="" id="">
+      <option value="1">AC</option>
+      <option value="2">NON AC</option>
+      <option value="3">SINGLE BED WITH AC</option>
+      <option value="4">SINGLE BED WITH NON AC</option>
+      <option value="5">DOUBLE WITH AC</option>
+      <option value="6">DOUBLE WITH NON AC</option>
+    </select>
+    <br>
+    <label for="Food">Food:</label>
+        <select id="Food" name="Food" required>
+            <option value="">--Select--</option>
+            <option value="veg">veg</option>
+            <option value="non veg">non veg</option>
+        </select>
+  </fieldset>
+  <fieldset>
+    <legend>COLLEGE DETAILS</legend>
+    <input type="text" placeholder="enter your user name">
+    <br>
+    <input type="text" placeholder=" enter ur branch" >
+    <br>
+    <input type="text" placeholder="enter parent number">
+  </fieldset>
+  <fieldset>
+    <legend>GUARDIANS DETAILS</legend>
+    <input type="text" placeholder="enter your Father name">
+    <br>
+    <input type="text" placeholder=" enter ur Mother name" >
+    <br>
+    <input type="number" placeholder="enter Fathers number">
+    <br>
+    <input type="number" placeholder="enter Mothers number">
+  </fieldset>
+<fieldset>
+    <p><legend > AITAM HOSTEL</legend></p>
+            <p>
+               we provide 24/7 wifi acess with good speed<br>
+               Everyone must and should pay the fees within the time.<br>
+               Gates should be closed at 9:15 pm.<br>
+               outers/Dayscholars are not allowed.
+            </p>
+
+        </fieldset>
+            <div class="form-group">
+    <label for="idProof">Upload ID Proof:</label>
+    <input type="file" id="idProof" name="idProof" accept=".jpg,.jpeg,.png,.pdf" required>
+</div>
+<legend>Maintenance</legend>
+<input type="range" placeholder="Maintenance">
+<div class="form-group">
+    <button type="submit">Register</button>
+</div>
+        </form>
+    </body>
+    
+</html>
