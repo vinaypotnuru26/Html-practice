@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Color Boxes and Chessboard</title>
+  <style>
+    /* Container styling */
+    .container {
+      width: 80%;
+      margin: auto;
+      text-align: center;
+    }
+
+    /* Heading styling */
+    h2 {
+      text-align: center;
+    }
+
+    /* Color boxes */
+    .boxes {
+      display: flex;
+      justify-content: space-around;
+      margin: 20px 0;
+    }
+
+    .box {
+      width: 100px;
+      height: 100px;
+      border: 1px solid #000;
+    }
+
+    .box1 { background-color:  black; }
+    .box2 { background-color:white; }
+
+    /* Chessboard styling */
+    .chessboard {
+      display: grid;
+      grid-template-columns: repeat(8, 50px);
+      grid-template-rows: repeat(8, 50px);
+      justify-content: center;
+      margin: 20px auto;
+    }
+
+    .chessboard div {
+      width: 50px;
+      height: 50px;
+    }
+
+    .chessboard .black {
+      background-color: black;
+    }
+
+    .chessboard .white {
+      background-color: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>My Color Boxes</h2>
+    <div class="boxes">
+      <div class="box box1"></div>
+      <div class="box box2"></div>
+    </div>
+
+    <h2>Chessboard</h2>
+    <div class="chessboard">
+      <!-- Chessboard grid -->
+      <!-- Generate alternating black and white squares -->
+      <script>
+        const chessboard = document.querySelector('.chessboard');
+        for (let row = 0; row < 8; row++) {
+          for (let col = 0; col < 8; col++) {
+            const square = document.createElement('div');
+            square.className = (row + col) % 2 === 0 ? 'white' : 'black';
+            chessboard.appendChild(square);
+          }
+        }
+      </script>
+    </div>
+  </div>
+</body>
+</html>
