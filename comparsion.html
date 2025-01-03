@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Comparison Table</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .comparison-table {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 auto;
+            max-width: 1200px;
+        }
+
+        .product-column {
+            flex: 1;
+            min-width: 300px;
+            border: 1px solid #ccc;
+            margin: 10px;
+            border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-header {
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 10px;
+            font-weight: bolder;
+        }
+
+        .product-feature {
+            padding: 10px;
+            border-top: 1px solid #ddd;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .comparison-table {
+                flex-direction: column;
+            }
+
+            .product-column {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="comparison-table">
+        <div class="product-column">
+            <div class="product-header">Product 1</div>
+            <div class="product-feature">Price:500rs</div>
+            <div class="product-feature">Availability: In Stock</div>
+            <div class="product-feature">Rating: 4.5/5</div>
+        </div>
+
+        <div class="product-column">
+            <div class="product-header">Product 2</div>
+            <div class="product-feature">Price:200rs</div>
+            <div class="product-feature">Availability: Limited Stock</div>
+            <div class="product-feature">Rating: 4.7/5</div>
+        </div>
+
+        <div class="product-column">
+            <div class="product-header">Product 3</div>
+            <div class="product-feature">Price:100rs</div>
+            <div class="product-feature">Availability: Out of Stock</div>
+            <div class="product-feature">Rating:4.5/5</div>
+        </div>
+    </div>
+</body>
+</html>
+
