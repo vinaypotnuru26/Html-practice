@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Printing Services</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin: 0; }
+        header { background: #333; color: white; padding: 15px; }
+        nav { display: flex; justify-content: center; gap: 20px; padding: 10px; background: #444; }
+        nav a, .dropdown { color: white; text-decoration: none; cursor: pointer; padding: 10px; position: relative; }
+        nav a:hover, .dropdown:hover { background: #007bff; border-radius: 5px; }
+        .hero { background: url('hero-image.jpg') no-repeat center center/cover; height: 400px; display: flex; align-items: center; justify-content: center; color: white; font-size: 36px; font-weight: bold; }
+        .content { padding: 20px; }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 200px;
+            box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+            z-index: 1;
+            left: 0;
+            top: 100%;
+        }
+        .dropdown-content a {
+            color: black;
+            padding: 10px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+        .dropdown:hover .dropdown-content { display: block; }
+        #customize, #feedbackSection { display: none; padding: 20px; }
+        canvas { border: 1px solid #ddd; margin-top: 20px; }
+        .stars { cursor: pointer; font-size: 24px; color: gray; }
+        .stars:hover, .stars.selected { color: gold; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Welcome to Our Printing Services</h1>
+    </header>
+
+    <nav>
+        <div class="dropdown">
+            <span>Contact ▼</span>
+            <div class="dropdown-content">
+                <a href="#">📞 Phone: 78938</a>
+                <a href="mailto:vinnu@gmail.com">📧 Email: vinnu@gmail.com</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <span>Address ▼</span>
+            <div class="dropdown-content">
+                <a href="#">📍 District: Srikakulam</a>
+                <a href="#">📍 Location: Tekkali - Aitam College Beside</a>
+                <a href="#">📍 State: Andhra Pradesh</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <span>Feedback ▼</span>
+            <div class="dropdown-content">
+                <a onclick="showFeedback()">Give Feedback</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <span>Customize ▼</span>
+            <div class="dropdown-content">
+                <a onclick="showCustomize('Marriage Card')">Marriage Card</a>
+                <a onclick="showCustomize('Birthday Card')">Birthday Card</a>
+                <a onclick="showCustomize('Visiting Card')">Visiting Card</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <p>Get High-Quality Customized Cards!</p>
+    </div>
+
+    <div class="content">
+        <h2>Why Choose Us?</h2>
+        <p>We offer high-quality printing for Marriage Cards, Birthday Cards, and Visiting Cards.</p>
+    </div>
+
+    <!-- Hidden Customization Section -->
+    <section id="customize">
+        <h2 id="customizeTitle"></h2>
+        <canvas id="designCanvas" width="500" height="250"></canvas>
+        <br>
+        <input type="text" id="headingInput" placeholder="Enter heading here">
+        <input type="color" id="headingColor" value="#FF0000">
+        <button onclick="addHeading()">Add Heading</button>
+        <br>
+        <textarea id="textInput" placeholder="Enter paragraph text here" rows="4" cols="50"></textarea>
+        <input type="color" id="paragraphColor" value="#000000">
+        <button onclick="addText()">Add Paragraph</button>
+        <br>
+        <button onclick="downloadDesign()">Download</button>
+    </section>
+
+    <!-- Hidden Feedback Section -->
+    <section id="feedbackSection">
+        <h2>Leave a Review</h2>
+        <textarea id="reviewText" placeholder="Write your feedback here..." rows="4" cols="50"></textarea>
+        <br>
+        <span class="stars" onclick="rate(1)">★</span>
+        <span class="stars" onclick="rate(2)">★</span>
+        <span class="stars" onclick="rate(3)">★</span>
+        <span class="stars" onclick="rate(4)">★</span>
+        <span class="stars" onclick="rate(5)">★</span>
+        <br>
+        <button onclick="submitReview()">Submit Review</button>
+        <h3>Customer Reviews</h3>
+        <div id="reviews"></div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Printing Services. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function showCustomize(cardType) {
+            document.getElementById("customize").style.display = "block";
+            document.getElementById("customizeTitle").innerText = "Customize Your " + cardType;
+            document.getElementById("feedbackSection").style.display = "none"; // Hide feedback when opening customization
+        }
+
+        function showFeedback() {
+            document.getElementById("feedbackSection").style.display = "block";
+            document.getElementById("customize").style.display = "none"; // Hide customization when opening feedback
+        }
+
+        let canvas = document.getElementById("designCanvas");
+        let ctx = canvas.getContext("2d");
+        ctx.fillStyle = "white";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        let textY = 50;
+
+        function addHeading() {
+            let text = document.getElementById("headingInput").value;
+            ctx.font = "24px Arial bold";
+            ctx.fillStyle = document.getElementById("headingColor").value;
+            ctx.fillText(text, 50, textY);
+            textY += 40;
+        }
+
+        function addText() {
+            let text = document.getElementById("textInput").value;
+            let lines = text.split('\n');
+            ctx.font = "20px Arial";
+            ctx.fillStyle = document.getElementById("paragraphColor").value;
+            lines.forEach(line => {
+                ctx.fillText(line, 50, textY);
+                textY += 25;
+            });
+        }
+
+        function downloadDesign() {
+            let link = document.createElement('a');
+            link.download = 'custom-card.png';
+            link.href = canvas.toDataURL();
+            link.click();
+        }
+
+        let selectedRating = 0;
+
+        function rate(stars) {
+            selectedRating = stars;
+            document.querySelectorAll('.stars').forEach((star, index) => {
+                star.classList.toggle('selected', index < stars);
+            });
+        }
+
+        function submitReview() {
+            let reviewText = document.getElementById("reviewText").value;
+            if (reviewText.trim() === "" || selectedRating === 0) {
+                alert("Please provide feedback and a rating.");
+                return;
+            }
+
+            let reviewDiv = document.createElement("div");
+            reviewDiv.innerHTML = `<strong>${"★".repeat(selectedRating)} ${"☆".repeat(5 - selectedRating)}</strong> - ${reviewText}`;
+            document.getElementById("reviews").appendChild(reviewDiv);
+
+            document.getElementById("reviewText").value = "";
+            selectedRating = 0;
+            document.querySelectorAll('.stars').forEach(star => star.classList.remove('selected'));
+        }
+    </script>
+
+</body>
+</html>
+
+
+
+
+
